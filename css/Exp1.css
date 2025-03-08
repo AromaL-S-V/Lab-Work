@@ -1,0 +1,18 @@
+img{
+    margin-left: 5%;
+    width: 20%;
+    height: 50%;
+}
+
+#item{
+    text-decoration: underline;
+}
+
+.review {
+    max-width: 40%; 
+    font-style: italic;
+    color: #444;
+    background-color: #f8f8f8;
+    padding: 2%;
+    
+}
