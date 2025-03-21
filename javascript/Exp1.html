@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #68cafb;
+            text-align: center;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #c3ebf3;
+            width: 350px;
+            margin: auto;
+            padding: 15px;
+            
+        }
+        
+        input {
+            width: 80%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #73c0fa;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 50%;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #64a0ef;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <h2>Register Here</h2>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" placeholder="Enter full name"><br>
+        <span class="error" id="nameError"></span><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" placeholder="Enter email"><br>
+        <span class="error" id="emailError"></span><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Enter password"><br>
+        <span class="error" id="passwordError"></span><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" placeholder="Confirm password"><br>
+        <span class="error" id="confirmPasswordError"></span><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let valid = true;
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+            document.getElementById("confirmPasswordError").innerText = "";
+
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name is required";
+                valid = false;
+            }
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (email === "") {
+                document.getElementById("emailError").innerText = "Email is required";
+                valid = false;
+            } else if (!email.match(emailPattern)) {
+                document.getElementById("emailError").innerText = "Enter a valid email";
+                valid = false;
+            }
+
+            if (password === "") {
+                document.getElementById("passwordError").innerText = "Password is required";
+                valid = false;
+            } else if (password.length < 6) {
+                document.getElementById("passwordError").innerText = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (confirmPassword === "") {
+                document.getElementById("confirmPasswordError").innerText = "Confirm Password is required";
+                valid = false;
+            } else if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").innerText = "Passwords do not match";
+                valid = false;
+            }
+
+            return valid; 
+        }
+    </script>
+
+</body>
+</html>
